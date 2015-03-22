@@ -1476,6 +1476,7 @@ data Solver = Z3
             | CVC4
             | MathSAT
             | ABC
+            | STP
             deriving (Show, Enum, Bounded)
 
 -- | An SMT solver

@@ -26,7 +26,7 @@ module Data.SBV.Provers.Prover (
        , isVacuous, isVacuousWith
        , SatModel(..), Modelable(..), displayModels, extractModels
        , getModelDictionaries, getModelValues, getModelUninterpretedValues
-       , boolector, cvc4, yices, z3, mathSAT, abc, defaultSMTCfg
+       , boolector, cvc4, yices, z3, mathSAT, abc, stp, defaultSMTCfg
        , compileToSMTLib, generateSMTBenchmarks
        , isSBranchFeasibleInState
        , isConditionSatisfiable
@@ -53,6 +53,7 @@ import qualified Data.SBV.Provers.Yices      as Yices
 import qualified Data.SBV.Provers.Z3         as Z3
 import qualified Data.SBV.Provers.MathSAT    as MathSAT
 import qualified Data.SBV.Provers.ABC        as ABC
+import qualified Data.SBV.Provers.STP        as STP
 import Data.SBV.Utils.TDiff
 
 mkConfig :: SMTSolver -> Bool -> [String] -> SMTConfig
@@ -94,6 +95,10 @@ mathSAT = mkConfig MathSAT.mathSAT True []
 -- | Default configuration for the ABC synthesis and verification tool.
 abc :: SMTConfig
 abc = mkConfig ABC.abc True []
+
+-- | Default configuration for the STP SMT solver.
+stp :: SMTConfig
+stp = mkConfig STP.stp True []
 
 -- | The default solver used by SBV. This is currently set to z3.
 defaultSMTCfg :: SMTConfig
